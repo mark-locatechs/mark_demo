@@ -5,23 +5,35 @@ services:
     volumes:
       - ./project/app:/app
     networks:
-      - overlay
+      - mark_network
     ports:
       - "5000:5000"
     command: python /app/app.py
+    restart:
+      always
   db:
-      image: mysql:5.7
-      networks:
-        - overlay
-      volumes:
-       - db-data:/var/lib/mysql/data
-      environment:
-        MYSQL_ROOT_PASSWORD: root
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mysql
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+    volumes:
+      - mark_db:/var/lib/mysql/data
+    networks:
+      - mark_network
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - mark_network
 
 volumes:
-  db-data:
+  mark_db:
 
 networks:
-  overlay:
+  mark_network:
 
 
