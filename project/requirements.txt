@@ -1,0 +1,9 @@
+flask==0.12.4
+Flask-RESTful==0.3.7
+
+Jinja2==2.10.1
+simplejson
+pymysql==0.8.0
+sqlalchemy==1.2.8
+
+Werkzeug==0.15.2

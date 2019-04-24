@@ -1,0 +1,27 @@
+version: "3"
+services:
+  app:
+    build: ./project
+    volumes:
+      - ./project/app:/app
+    networks:
+      - overlay
+    ports:
+      - "5000:5000"
+    command: python /app/app.py
+  db:
+      image: mysql:5.7
+      networks:
+        - overlay
+      volumes:
+       - db-data:/var/lib/mysql/data
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+
+volumes:
+  db-data:
+
+networks:
+  overlay:
+
+
