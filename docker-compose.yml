@@ -1,39 +1,42 @@
 version: "3"
 services:
+  #main app
   app:
     build: ./project
     volumes:
       - ./project/app:/app
     networks:
-      - mark_network
+      - demo_network
     ports:
       - "5000:5000"
-    command: python /app/app.py
+#    command: python /app/app.py
     restart:
       always
+
+  #development tool
   db:
-    image: mariadb
+    image: mariadb:10.3.14
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mysql
-      MYSQL_USER: mysql
-      MYSQL_PASSWORD: mysql
+      MYSQL_DATABASE: demo
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: demo
     volumes:
-      - mark_db:/var/lib/mysql/data
+      - demo_db:/var/lib/mysql/data
     networks:
-      - mark_network
+      - demo_network
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
     networks:
-      - mark_network
+      - demo_network
 
 volumes:
-  mark_db:
+  demo_db:
 
 networks:
-  mark_network:
+  demo_network:
 
 

@@ -1,71 +1,81 @@
-from flask import Flask
-import mysql.connector
-import simplejson as json
-import string
-import random
+#!/usr/bin/env python
 
-from flask_sqlalchemy import SQLAlchemy
-
-from flask_restful import reqparse, abort, Api, Resource
+from flask import Flask, jsonify, request, abort, Blueprint
+from flask_cors import CORS
+from flask import render_template
 
 
-# config = {
-#         'user': 'mysql',
-#         'password': 'mysql',
-#         'host': 'db',
-#         'port': '3306',
-#         'database': 'test'
-#     }
-# connection = mysql.connector.connect(**config)
-# cursor = connection.cursor()
+from flask_sqlalchemy import get_debug_queries
+from flask_restful import  Api, Resource, fields, marshal, marshal_with
+
+from controllers import RouteController, RoutesController, EventsController, EventController
+from models import database_init
+from shared import db
+
+
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://mysql:mysql@db/test'
+# only for dev
+app.debug = True
+
+# cors
+CORS(app)
+
+
+
+# init database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://demo:demo@db/demo?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+db.init_app(app)
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=False, nullable=False)
+# Rest Controller
 
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-#
-# A decorator to manage database connection automatically
-#
-# def db_connection(func):
-#     def function_wrapper(*args, **kwargs):
-
-#         connection = mysql.connector.connect(**config)
-#         cursor = connection.cursor()     
-
-#         result = func(*args, **kwargs)
-
-#         cursor.close()
-#         connection.close()
-#         return result
-        
-#     return function_wrapper
+api_bp = Blueprint('api', __name__)
+api = Api(app)
 
 
-#
-#   CRUD for a single user
-#
+
+api.add_resource(RoutesController, '/route')
+api.add_resource(RouteController, '/route/<int:id>')
 
 
-def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+api.add_resource(EventsController, '/event')
+api.add_resource(EventController, '/event/<int:id>')
 
+app.register_blueprint(api_bp)
+
+
+
+# static index page
 @app.route('/')
 def index():
-    result = [(user.id, user.name) for user in User.query.all()]
+    #result = [(user.id, user.name) for user in User.query.all()]
 
-    return json.dumps(result)
-
-
+    return render_template('index.html')
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+# url to recreate database
+@app.route('/init')
+def init():
+
+    database_init()
+    return 'Database created'
+
+
+# close db connection
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+
+    db.session.close()
+
+# Enable when needed...
+# def sql_debug(response):
+#     queries = list(get_debug_queries())
+#     for q in queries:
+#         stmt = str(q.statement % q.parameters)
+#         print(stmt)
+
+#     return response
+
+# app.after_request(sql_debug)
