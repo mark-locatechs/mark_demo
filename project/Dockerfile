@@ -4,6 +4,8 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
         libatlas-base-dev gfortran nginx supervisor
 
+RUN pip install --upgrade pip
+
 
 COPY requirements.txt /tmp
 

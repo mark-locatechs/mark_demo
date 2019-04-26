@@ -1,11 +1,16 @@
+#server
 uwsgi==2.0.18
 
+#flask
 flask==0.12.4
 flask-restful==0.3.7
 Flask-Cors==3.0.7
 
+#db
 Flask-SQLAlchemy==2.3
-
 marshmallow-sqlalchemy==0.16.2
-
 pymysql==0.8.0
+
+#test
+pytest==4.4.1
+pytest-cov==2.6.1

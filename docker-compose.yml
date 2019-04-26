@@ -5,11 +5,11 @@ services:
     build: ./project
     volumes:
       - ./project/app:/app
+      - ./project/tests:/tests
     networks:
       - demo_network
     ports:
       - "5000:5000"
-#    command: python /app/app.py
     restart:
       always
 
