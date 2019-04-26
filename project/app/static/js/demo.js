@@ -18,42 +18,49 @@ var app = new Vue({
         route_id_error: false
     },
     methods: {
+        loadData: function(){
+            let self = this;
+            axios.get('/city')
+            .then(response => {
+                self.cities = response.data;
+            })
+
+            axios.get('/event')
+            .then(response => {
+                self.events = response.data;
+            })
+            axios.get('/route')
+            .then(response => {
+                self.routes = response.data;
+            });
+        },
         newRoute: function(event){
             axios.post('/route')
             .then(response => {
 
-                axios.get('/route')
-                .then(response => {
-                    this.routes = response.data;
-                });
+                this.loadData();
             })
         },
         removeRoute: function (route) {
             axios.delete('/route/' + route.id)
             .then(response => {
 
-                axios.get('/route')
-                .then(response => {
-                    this.routes = response.data;
-                });
+                this.loadData();
             })
-        },
-        newEvent: function(route){
-
         },
         customFormatter(date) {
             return moment(date).format('YYYY-MM-DD');
         },
         eventModalClose: function(){
-            // this.start_id_selected = null;
-            // this.end_id_selected = null;
-            // this.time_selected = null;
-            // this.route_id_selected = null;
+            this.start_id_selected = null;
+            this.end_id_selected = null;
+            this.time_selected = null;
+            this.route_id_selected = null;
 
-            // this.start_id_error = false;
-            // this.end_id_error = false;
-            // this.time_error = false;
-            // this.route_id_error = false;
+            this.start_id_error = false;
+            this.end_id_error = false;
+            this.time_error = false;
+            this.route_id_error = false;
         },
         addEvent: function(route_id){
             this.route_id_selected = route_id;
@@ -68,7 +75,8 @@ var app = new Vue({
             })
             .then(function (response) {
 
-              console.log(response);
+                self.loadData();
+                $('#eventModal').modal("hide");
             })
             .catch(function (error) {
 
@@ -92,25 +100,10 @@ var app = new Vue({
 
     },
     mounted () {
-        //let self = this;
-        axios.get('/city')
-        .then(response => {
-            this.cities = response.data;
-        })
 
-        axios.get('/event')
-        .then(response => {
-            this.events = response.data;
-        })
-        axios.get('/route')
-        .then(response => {
-            this.routes = response.data;
-        });
+        this.loadData();
 
-
-
-
-        //$(this.$refs.eventModal).on("hidden.bs.modal", this.eventModalClose)
+        $(this.$refs.eventModal).on("hidden.bs.modal", this.eventModalClose)
 
     },
     delimiters: ['[[',']]'],

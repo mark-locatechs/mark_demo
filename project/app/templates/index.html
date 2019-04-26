@@ -22,9 +22,9 @@
 
                                 </h3>
 
-                                <p class="card-text" v-if="route.events.length">
+                                <p class="card-text"  >
                                     <ul class="list-group">
-                                        <li class="list-group-item d-flex" v-for="event_id in route.events">
+                                        <li class="list-group-item d-flex" v-for="event_id in route.events" v-if="cities && events">
                                             <span class="mr-md-auto">
                                                 [[ cities[events[event_id].start_id].name ]]
                                                 to
@@ -66,27 +66,32 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form class="needs-validation" was-validated>
                     <div class="form-group">
+
                         <label for="start-id-input" class="col-form-label">Start</label>
-                        <select class="form-control" v-model="start_id_selected" id="start-id-input">
+                        <select class="form-control" v-model="start_id_selected" id="start-id-input" v-on:change="()=>{start_id_error=null}">
                             <option v-bind:value="city.id" id="start_id" v-for="city in cities">[[ city.name ]]</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                            <label for="end-id-input" class="col-form-label">End</label>
-                            <select class="form-control" v-model="end_id_selected" id="end-id-input">
-                                <option v-bind:value="city.id" id="end_id" v-for="city in cities">[[ city.name ]]</option>
-                            </select>
-                    </div>
-                    <div class="form-group">
-                            <label for="time-input" class="col-form-label">Time</label>
-                            <vuejs-datepicker
-                                placeholder="Select Date" v-model="time_selected" id="time-input"
-                                :format="customFormatter">
-                            </vuejs-datepicker>
+                        <div class="invalid-feedback d-block" v-if="start_id_error">[[start_id_error]]</div>
 
                     </div>
+                    <div class="form-group">
+                        <label for="end-id-input" class="col-form-label">End</label>
+                        <select class="form-control" v-model="end_id_selected" id="end-id-input" v-on:change="()=>{end_id_error=null}">
+                            <option v-bind:value="city.id" id="end_id" v-for="city in cities">[[ city.name ]]</option>
+                        </select>
+                        <div class="invalid-feedback d-block" v-if="end_id_error">[[end_id_error]]</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="time-input" class="col-form-label">Time</label>
+                        <vuejs-datepicker
+                            placeholder="Select Date" v-model="time_selected" id="time-input"
+                            :format="customFormatter"  v-on:closed="()=>{time_error=null}">
+                        </vuejs-datepicker>
+                        <div class="invalid-feedback d-block" v-if="time_error">[[time_error]]</div>
+                    </div>
+
                   </form>
                 </div>
                 <div class="modal-footer">
