@@ -18,25 +18,27 @@
 
                         </div>
                         <div class="card-body" >
-                                <h3 class="card-title pricing-card-title">
-
-                                </h3>
+                                <h3 class="card-title pricing-card-title"></h3>
 
                                 <p class="card-text"  >
                                     <ul class="list-group">
-                                        <li class="list-group-item d-flex" v-for="event_id in route.events" v-if="cities && events">
-                                            <span class="mr-md-auto">
-                                                [[ cities[events[event_id].start_id].name ]]
-                                                to
-                                                [[ cities[events[event_id].end_id].name ]]
+                                        <li class="list-group-item d-flex row align-items-center" v-for="event_id in route.events" v-if="cities && events[event_id]">
+                                            <span class="col text-left">
+                                                    [[ cities[events[event_id].start_id].name ]]
+                                                    to
+                                                    [[ cities[events[event_id].end_id].name ]]
 
                                             </span>
-                                            <span class="mr-md-auto">
+                                            <span class="col text-left">
                                                 [[ events[event_id].time ]]
 
                                             </span>
-                                            <button type="button" class="btn btn-xs btn-outline-success mr-1" >Edit</button>
-                                            <button type="button" class="btn btn-xs btn-outline-danger ">Remove</button>
+
+                                            <button type="button" class="btn btn-xs btn-outline-success mr-1"
+                                                data-toggle="modal" data-target="#eventModal"
+                                                v-on:click="editEvent(events[event_id])"
+                                            >Edit</button>
+                                            <button type="button" class="btn btn-xs btn-outline-danger" v-on:click="removeEvent(event_id)">Remove</button>
                                         </li>
                                     </ul>
 
@@ -60,7 +62,10 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="eventModalLabel">New Event in Route [[route_id_selected]]</h5>
+
+                  <h5 class="modal-title" id="eventModalLabel" v-if="modal_status=='create'">New Event in Route [[route_id_selected]]</h5>
+                  <h5 class="modal-title" id="eventModalLabel" v-else>Edit Event</h5>
+
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -96,7 +101,10 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" v-on:click="createEvent">Create</button>
+
+                  <button type="button" class="btn btn-primary" v-on:click="createEvent" v-if="modal_status=='create'">Create</button>
+                  <button type="button" class="btn btn-primary" v-on:click="updateEvent" v-else>Save</button>
+
                 </div>
               </div>
             </div>

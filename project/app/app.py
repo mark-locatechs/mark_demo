@@ -57,6 +57,13 @@ def index():
 
     return render_template('index.html')
 
+# static index page
+@app.route('/lorem')
+def lorem():
+    #result = [(user.id, user.name) for user in User.query.all()]
+
+    return render_template('lorem.html')
+
 
 # url to recreate database
 @app.route('/init')
@@ -72,13 +79,13 @@ def shutdown_session(exception=None):
 
     db.session.close()
 
-# Enable when needed...
-# def sql_debug(response):
-#     queries = list(get_debug_queries())
-#     for q in queries:
-#         stmt = str(q.statement % q.parameters)
-#         print(stmt)
+#Enable when needed...
+def sql_debug(response):
+    queries = list(get_debug_queries())
+    for q in queries:
+        stmt = str(q.statement % q.parameters)
+        print(stmt)
 
-#     return response
+    return response
 
-# app.after_request(sql_debug)
+app.after_request(sql_debug)

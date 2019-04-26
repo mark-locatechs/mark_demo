@@ -6,7 +6,7 @@ class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     events = db.relationship('Event',
-        backref=db.backref('route', lazy=True))
+        backref=db.backref('route', lazy=True, passive_deletes=True))
 
     def __repr__(self):
         return '<Route %r>' % self.id
@@ -17,7 +17,7 @@ class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.Date, unique=False, nullable=False)
 
-    route_id = db.Column(db.Integer, db.ForeignKey('route.id'), nullable=False)
+    route_id = db.Column(db.Integer, db.ForeignKey('route.id', ondelete='CASCADE'), nullable=False)
     start_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
     end_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
 

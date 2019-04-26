@@ -108,6 +108,33 @@ class EventController(Resource):
 
         return {}, 200
 
+    def put(self, id):
+
+        data = request.get_json()
+
+        (new_event, error) = event_schema.load(data, session=db.session)
+
+
+        if error:
+            return make_response(jsonify(error=error), 400)
+
+        # remove route_id for security
+        data.pop('route_id')
+
+        row_count = Event.query.filter_by(id=id).update(data)
+
+        print(row_count)
+
+
+        try:
+            db.session.commit()
+
+            return jsonify(id=id)
+
+        except Exception as e:
+            db.session.rollback()
+            abort(400)
+
 
 class EventsController(Resource):
 
