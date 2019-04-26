@@ -6,7 +6,6 @@ Flask-Cors==3.0.7
 
 Flask-SQLAlchemy==2.3
 
-flask_marshmallow==0.10.0
 marshmallow-sqlalchemy==0.16.2
 
 pymysql==0.8.0

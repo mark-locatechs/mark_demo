@@ -8,7 +8,7 @@ from flask import render_template
 from flask_sqlalchemy import get_debug_queries
 from flask_restful import  Api, Resource, fields, marshal, marshal_with
 
-from controllers import RouteController, RoutesController, EventsController, EventController
+from controllers import RouteController, RoutesController, EventsController, EventController, CitiesController
 from models import database_init
 from shared import db
 
@@ -27,6 +27,7 @@ CORS(app)
 # init database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://demo:demo@db/demo?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
 db.init_app(app)
 
 # Rest Controller
@@ -42,6 +43,8 @@ api.add_resource(RouteController, '/route/<int:id>')
 
 api.add_resource(EventsController, '/event')
 api.add_resource(EventController, '/event/<int:id>')
+
+api.add_resource(CitiesController, '/city')
 
 app.register_blueprint(api_bp)
 

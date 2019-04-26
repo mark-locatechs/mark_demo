@@ -2,37 +2,40 @@
 
 
 {% block content %}
+<div id="routeplaner">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Route Planer</h1>
         <p class="lead">Each route contains multiple events</p>
-        <button type="button" class="btn btn-xs btn-outline-success">New Route</button>
+        <button type="button" class="btn btn-xs btn-outline-success" v-on:click="newRoute">New Route</button>
     </div>
 
-    <div id="routelist" class="container" v-cloak>
-            <div class="card-deck mb-3 text-center" v-for="(route, id) in routes">
-                <div class="card mb-4 box-shadow">
+    <div  class="container" v-cloak>
+            <div class="card-deck mb-3 text-center" v-for="route in routes" v-if="routes">
+                <div class="card mb-4 box-shadow" >
                         <div class="card-header d-flex flex-column flex-md-row align-items-center">
-                                <h4 class="my-0 mr-md-auto font-weight-normal">Route [[id]]</h4>
-                                <button type="button" class="btn btn-xs btn-outline-danger ">Remove</button>
+                                <h4 class="my-0 mr-md-auto font-weight-normal">Route [[route.id]]</h4>
+                                <button type="button" class="btn btn-xs btn-outline-danger" v-on:click="removeRoute(route)">Remove</button>
 
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" >
                                 <h3 class="card-title pricing-card-title">
-                                    From [[ cities[route.start].name ]] to From [[ cities[route.end].name ]]
+
                                 </h3>
 
-                                <p class="card-text">
+                                <p class="card-text" v-if="route.events.length">
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex" v-for="event_id in route.events">
                                             <span class="mr-md-auto">
-                                                [[ cities[events[event_id].start].name ]] to [[ cities[events[event_id].end].name ]]
+                                                [[ cities[events[event_id].start_id].name ]]
+                                                to
+                                                [[ cities[events[event_id].end_id].name ]]
 
                                             </span>
                                             <span class="mr-md-auto">
                                                 [[ events[event_id].time ]]
 
                                             </span>
-                                            <button type="button" class="btn btn-xs btn-outline-success mr-1">Edit</button>
+                                            <button type="button" class="btn btn-xs btn-outline-success mr-1" >Edit</button>
                                             <button type="button" class="btn btn-xs btn-outline-danger ">Remove</button>
                                         </li>
                                     </ul>
@@ -40,7 +43,10 @@
                                 </p>
 
                                 <div class="card-text">
-                                    <button type="button" class="btn btn-xs btn-block btn-outline-success">Add Event</button>
+                                    <button type="button" class="btn btn-xs btn-block btn-outline-success"
+                                            data-toggle="modal" data-target="#eventModal"
+                                            v-on:click="addEvent(route.id)"
+                                            >Add Event</button>
                                 </div>
 
                         </div>
@@ -49,8 +55,51 @@
 
     </div>
 
-    <script>
 
-    </script>
+    <div ref="eventModal"  class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="eventModalLabel">New Event in Route [[route_id_selected]]</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                        <label for="start-id-input" class="col-form-label">Start</label>
+                        <select class="form-control" v-model="start_id_selected" id="start-id-input">
+                            <option v-bind:value="city.id" id="start_id" v-for="city in cities">[[ city.name ]]</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                            <label for="end-id-input" class="col-form-label">End</label>
+                            <select class="form-control" v-model="end_id_selected" id="end-id-input">
+                                <option v-bind:value="city.id" id="end_id" v-for="city in cities">[[ city.name ]]</option>
+                            </select>
+                    </div>
+                    <div class="form-group">
+                            <label for="time-input" class="col-form-label">Time</label>
+                            <vuejs-datepicker
+                                placeholder="Select Date" v-model="time_selected" id="time-input"
+                                :format="customFormatter">
+                            </vuejs-datepicker>
+
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" v-on:click="createEvent">Create</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+</div>
+    <script src="{{ url_for('static', filename='js/moment.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vuejs-datepicker.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/demo.js') }}?{{ range(1, 9999) | random }}" defer></script>
 {% endblock %}

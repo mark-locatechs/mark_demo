@@ -38,6 +38,12 @@ event_schema = EventSchema()
 events_schema = EventSchema(many=True)
 
 
+class CitySchema(ModelSchema):
+    class Meta:
+        model = City
+
+cities_schema = CitySchema(many=True)
+
 
 class RouteController(Resource):
 
@@ -68,7 +74,8 @@ class RoutesController(Resource):
 
     def get(self):
         result = Route.query.all()
-        return routes_schema.dump(result)
+        dict_result = { route.get('id'): route for route in routes_schema.dump(result).data}
+        return dict_result
 
     def post(self):
         new_route = Route()
@@ -106,7 +113,9 @@ class EventsController(Resource):
 
     def get(self):
         result = Event.query.all()
-        return events_schema.dump(result)
+
+        dict_result = { event.get('id'): event for event in events_schema.dump(result).data}
+        return dict_result
 
     def post(self):
 
@@ -126,3 +135,9 @@ class EventsController(Resource):
 
 
 
+class CitiesController(Resource):
+
+    def get(self):
+        result = City.query.all()
+        dict_result = { city.get('id'): city for city in cities_schema.dump(result).data}
+        return dict_result
