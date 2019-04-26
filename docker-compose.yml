@@ -2,10 +2,9 @@ version: "3"
 services:
   #main app
   app:
-    build: ./project
+    build: .
     volumes:
-      - ./project/app:/app
-      - ./project/tests:/tests
+      - ./project:/project
     networks:
       - demo_network
     ports:

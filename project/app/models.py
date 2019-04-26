@@ -1,4 +1,4 @@
-from shared import db
+from app.shared import db
 
 
 class Route(db.Model):
@@ -6,7 +6,7 @@ class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     events = db.relationship('Event',
-        backref=db.backref('route', lazy=True, passive_deletes=True))
+        backref=db.backref('route', lazy=True))
 
     def __repr__(self):
         return '<Route %r>' % self.id

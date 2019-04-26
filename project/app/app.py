@@ -8,9 +8,9 @@ from flask import render_template
 from flask_sqlalchemy import get_debug_queries
 from flask_restful import  Api, Resource, fields, marshal, marshal_with
 
-from controllers import RouteController, RoutesController, EventsController, EventController, CitiesController
-from models import database_init
-from shared import db
+from app.controllers import RouteController, RoutesController, EventsController, EventController, CitiesController
+from app.models import database_init
+from app.shared import db
 
 
 

@@ -20,9 +20,8 @@ COPY mark-demo-nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
 COPY supervisord.conf /etc/
 
-COPY app /app
 
-WORKDIR /app
+WORKDIR /project/
 
 
 CMD ["/usr/bin/supervisord"]

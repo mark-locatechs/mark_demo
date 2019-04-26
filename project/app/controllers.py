@@ -1,12 +1,12 @@
 from flask import abort, jsonify, request, make_response
-from models import Route, Event, City
+from app.models import Route, Event, City
 from flask_restful import  Api, Resource
 
 
 from marshmallow import Schema, fields, post_load
 from marshmallow_sqlalchemy import ModelSchema
 
-from shared import db
+from app.shared import db
 
 
 
