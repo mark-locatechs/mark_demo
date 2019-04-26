@@ -28,7 +28,9 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://demo:demo@db/demo?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
-db.init_app(app)
+
+with app.app_context():
+    db.init_app(app)
 
 # Rest Controller
 
@@ -65,14 +67,6 @@ def lorem():
     return render_template('lorem.html')
 
 
-# url to recreate database
-@app.route('/init')
-def init():
-
-    database_init()
-    return 'Database created'
-
-
 # close db connection
 @app.teardown_appcontext
 def shutdown_session(exception=None):
@@ -80,12 +74,12 @@ def shutdown_session(exception=None):
     db.session.close()
 
 #Enable when needed...
-def sql_debug(response):
-    queries = list(get_debug_queries())
-    for q in queries:
-        stmt = str(q.statement % q.parameters)
-        print(stmt)
+# def sql_debug(response):
+#     queries = list(get_debug_queries())
+#     for q in queries:
+#         stmt = str(q.statement % q.parameters)
+#         print(stmt)
 
-    return response
+#     return response
 
-app.after_request(sql_debug)
+# app.after_request(sql_debug)

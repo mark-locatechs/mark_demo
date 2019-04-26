@@ -66,7 +66,7 @@ class RouteController(Resource):
         if rowcount == 0:
             abort(404)
 
-        return {}, 200
+        return jsonify(row=rowcount)
 
 
 class RoutesController(Resource):
@@ -106,7 +106,7 @@ class EventController(Resource):
         if rowcount == 0:
             abort(404)
 
-        return {}, 200
+        return jsonify(row=rowcount)
 
     def put(self, id):
 
