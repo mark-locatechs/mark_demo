@@ -2,9 +2,9 @@ version: "3"
 services:
   #main app
   app:
-    build: .
+    build: ./flask_project
     volumes:
-      - ./project:/project
+      - ./flask_project:/project
     networks:
       - demo_network
     ports:
@@ -34,6 +34,8 @@ services:
       - 8080:8080
     networks:
       - demo_network
+    depends_on:
+      - db
 
 volumes:
   demo_db:

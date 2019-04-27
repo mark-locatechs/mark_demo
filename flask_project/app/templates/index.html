@@ -111,8 +111,12 @@
           </div>
 
 </div>
-    <script src="{{ url_for('static', filename='js/moment.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/vuejs-datepicker.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/demo.js') }}?{{ range(1, 9999) | random }}" defer></script>
+
+{% endblock %}
+
+{% block end_script %}
+<script src="{{ url_for('static', filename='js/moment.js') }}"></script>
+<script src="{{ url_for('static', filename='js/vuejs-datepicker.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo.js') }}?{{ range(1, 9999) | random }}" defer></script>
 {% endblock %}
