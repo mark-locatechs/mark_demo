@@ -1,4 +1,3 @@
-
 var app = new Vue({
     el: '#routeplaner',
     components: {
@@ -25,35 +24,35 @@ var app = new Vue({
             let self = this;
 
             if(api.indexOf('city') > -1){
-                axios.get('/city')
+                axios.get('/api/city')
                 .then(response => {
                     self.cities = response.data;
                 })
             }
 
             if(api.indexOf('event') > -1){
-                axios.get('/event')
+                axios.get('/api/event')
                 .then(response => {
                     self.events = response.data;
                 })
             }
 
             if(api.indexOf('route') > -1){
-                axios.get('/route')
+                axios.get('/api/route')
                 .then(response => {
                     self.routes = response.data;
                 });
             }
         },
         newRoute: function(event){
-            axios.post('/route')
+            axios.post('/api/route')
             .then(response => {
                 this.loadData();
             })
         },
         removeRoute: function (route) {
             let self = this;
-            axios.delete('/route/' + route.id)
+            axios.delete('/api/route/' + route.id)
             .then(response => {
 
                 Vue.delete(self.routes, route.id);
@@ -62,7 +61,7 @@ var app = new Vue({
         removeEvent: function (event_id){
 
             let self = this;
-            axios.delete('/event/' + event_id)
+            axios.delete('/api/event/' + event_id)
             .then(response => {
                 Vue.delete(self.events, event_id);
             })
@@ -87,7 +86,7 @@ var app = new Vue({
         },
         createEvent: function(){
             let self = this;
-            axios.post('/event', {
+            axios.post('/api/event', {
                 'time' : this.time_selected,
                 'start_id': this.start_id_selected,
                 'end_id': this.end_id_selected,
@@ -131,7 +130,7 @@ var app = new Vue({
 
             let self = this;
 
-            axios.put('/event/' + self.event_id_selected, {
+            axios.put('/api/event/' + self.event_id_selected, {
                 'time' : self.time_selected,
                 'start_id': self.start_id_selected,
                 'end_id': self.end_id_selected,

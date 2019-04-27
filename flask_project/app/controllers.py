@@ -18,7 +18,7 @@ route_schema = RouteSchema()
 routes_schema = RouteSchema(many=True)
 
 
-class EventSchema(ModelSchema):
+class EventUpdateSchema(ModelSchema):
     time = fields.Date(
         required=True,
     )
@@ -28,13 +28,18 @@ class EventSchema(ModelSchema):
     end_id = fields.Integer(
         required=True,
     )
-    route_id = fields.Integer(
-        required=True,
-    )
     class Meta:
         model = Event
 
+
+class EventSchema(EventUpdateSchema):
+    route_id = fields.Integer(
+        required=True,
+    )
+
+
 event_schema = EventSchema()
+event_update_schema = EventUpdateSchema()
 events_schema = EventSchema(many=True)
 
 
@@ -112,18 +117,19 @@ class EventController(Resource):
 
         data = request.get_json()
 
-        (new_event, error) = event_schema.load(data, session=db.session)
+        data['id'] = id
+        data.pop('route_id')
+
+        (new_event, error) = event_update_schema.load(data, session=db.session)
 
 
         if error:
             return make_response(jsonify(error=error), 400)
 
-        # remove route_id for security
-        data.pop('route_id')
+        # # remove route_id for security
 
-        row_count = Event.query.filter_by(id=id).update(data)
 
-        print(row_count)
+        # row_count = Event.query.filter_by(id=id).update(data)
 
 
         try:
@@ -132,8 +138,11 @@ class EventController(Resource):
             return jsonify(id=id)
 
         except Exception as e:
+
             db.session.rollback()
-            abort(400)
+
+            return make_response(jsonify(error=str(e)), 400)
+
 
 
 class EventsController(Resource):

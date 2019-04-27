@@ -118,5 +118,10 @@
 <script src="{% static 'js/moment.js' %}"></script>
 <script src="{% static 'js/vuejs-datepicker.min.js' %}"></script>
 <script src="{% static 'js/axios.min.js' %}"></script>
+
+<script>
+  axios.defaults.xsrfHeaderName = "X-CSRFToken";
+  axios.defaults.xsrfCookieName = 'csrftoken';
+</script>
 <script src="{% static 'js/demo.js' %}"></script>
 {% endblock %}
