@@ -157,3 +157,4 @@ def test_city_list_get():
 # reset DB
 with app.app_context():
     database_init()
+    print('reset db')

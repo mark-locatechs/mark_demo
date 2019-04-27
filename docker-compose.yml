@@ -11,6 +11,9 @@ services:
       - "5000:5000"
     restart:
       always
+    depends_on:
+      - db
+
 
   #development tool
   db:

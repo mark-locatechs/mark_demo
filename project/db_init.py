@@ -8,3 +8,5 @@ from app.models import database_init
 with app.app_context():
     database_init()
 
+print('db init completed')
+

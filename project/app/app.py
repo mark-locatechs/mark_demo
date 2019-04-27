@@ -29,8 +29,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://demo:demo@db/demo?chars
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
 
-with app.app_context():
-    db.init_app(app)
+
+db.init_app(app)
 
 # Rest Controller
 

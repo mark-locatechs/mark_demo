@@ -1,8 +1,7 @@
 FROM python:3.7
 
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-        libatlas-base-dev gfortran nginx supervisor
+RUN apt-get install -y --no-install-recommends nginx supervisor
 
 RUN pip install --upgrade pip
 
