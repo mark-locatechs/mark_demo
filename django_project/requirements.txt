@@ -1,0 +1,15 @@
+#server
+uwsgi==2.0.18
+
+#Django
+Django>=2.0,<3.0
+
+#db
+pymysql==0.8.0
+
+#test
+pytest==4.4.1
+pytest-cov==2.6.1
+pytest-xdist==1.28.0
+
+requests==2.21.0

@@ -1,19 +1,31 @@
 version: "3"
 services:
   #main app
-  app:
-    build: ./flask_project
+  # flask_project:
+  #   build: ./flask_project
+  #   volumes:
+  #     - ./flask_project:/project
+  #   networks:
+  #     - demo_network
+  #   ports:
+  #     - "5000:5000"
+  #   restart:
+  #     always
+  #   depends_on:
+  #     - db
+  django_project:
+    build: ./django_project
     volumes:
-      - ./flask_project:/project
+      - ./django_project:/web
     networks:
       - demo_network
     ports:
-      - "5000:5000"
+      - "8000:8000"
     restart:
       always
     depends_on:
       - db
-
+    command: python manage.py runserver 0.0.0.0:8000
 
   #development tool
   db:
