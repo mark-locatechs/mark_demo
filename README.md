@@ -43,5 +43,7 @@ automatic backend pytest, accpetance test for all CRUD api
 
 
 
-## what next:
+## What next:
+- in-code comments
 - separate config files, can use consul
+
