@@ -28,6 +28,17 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
 
   #development tool
+  # db:
+  #   image: postgres:9.6
+  #   environment:
+  #     POSTGRES_DB: demo
+  #     POSTGRES_USER: demo
+  #     POSTGRES_PASSWORD: demo
+  #   volumes:
+  #     - demo_db:/var/lib/postgresql/data
+  #   networks:
+  #     - demo_network
+
   db:
     image: mariadb:10.3.14
     environment:
