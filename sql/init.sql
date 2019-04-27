@@ -192,3 +192,51 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- 2019-04-27 19:12:24
+
+
+-- Adminer 4.7.1 MySQL dump
+
+SET NAMES utf8;
+SET time_zone = '+00:00';
+SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+
+DROP TABLE IF EXISTS `city`;
+CREATE TABLE `city` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+TRUNCATE `city`;
+INSERT INTO `city` (`id`, `name`) VALUES
+(1,	'Amsterdam'),
+(2,	'Berlin'),
+(3,	'Paris'),
+(4,	'Tokyo');
+
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` date NOT NULL,
+  `route_id` int(11) NOT NULL,
+  `start_id` int(11) NOT NULL,
+  `end_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `route_id` (`route_id`),
+  KEY `start_id` (`start_id`),
+  KEY `end_id` (`end_id`),
+  CONSTRAINT `event_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `route` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `event_ibfk_2` FOREIGN KEY (`start_id`) REFERENCES `city` (`id`),
+  CONSTRAINT `event_ibfk_3` FOREIGN KEY (`end_id`) REFERENCES `city` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `route`;
+CREATE TABLE `route` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- 2019-04-27 21:00:04

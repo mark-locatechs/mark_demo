@@ -1,18 +1,18 @@
 version: "3"
 services:
   #main app
-  # flask_project:
-  #   build: ./flask_project
-  #   volumes:
-  #     - ./flask_project:/project
-  #   networks:
-  #     - demo_network
-  #   ports:
-  #     - "5000:5000"
-  #   restart:
-  #     always
-  #   depends_on:
-  #     - db
+  flask_project:
+    build: ./flask_project
+    volumes:
+      - ./flask_project:/project
+    networks:
+      - demo_network
+    ports:
+      - "5000:5000"
+    restart:
+      always
+    depends_on:
+      - db
   django_project:
     build: ./django_project
     volumes:
@@ -27,18 +27,7 @@ services:
       - db
     command: python manage.py runserver 0.0.0.0:8000
 
-  #development tool
-  # db:
-  #   image: postgres:9.6
-  #   environment:
-  #     POSTGRES_DB: demo
-  #     POSTGRES_USER: demo
-  #     POSTGRES_PASSWORD: demo
-  #   volumes:
-  #     - demo_db:/var/lib/postgresql/data
-  #   networks:
-  #     - demo_network
-
+   # development enviroments
   db:
     image: mariadb:10.3.14
     environment:
