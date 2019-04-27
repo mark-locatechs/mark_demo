@@ -1,15 +1,15 @@
 # Mark Demo
 Demo Project from Mark Long (mark@locatechs.com)
-###### Backend:
+## Backend:
 Docker, Flask, Mysql, Pytest, uWsgi, nginx, supervisord
-###### Frontend:
+## Frontend:
 Bootstrap, Vuejs
 
-##Description:
+## Description:
 The main purpose of this project is a Demo.
-It is designed to balance fast development, easy to maintain, portable and scalable of the application.
+It is designed to balance fast development, easy to maintain, portability and scalablity of the application.
 
-## Install
+## Run Guide
 ###### build containers
 docker-compose build
 
@@ -23,7 +23,7 @@ docker-compose up -d
 docker-compose exec app pytest -s --disable-pytest-warnings -v tests
 
 
-###### Technologies
+## Technologies
 - Docker is chosed for its portablilty and scalable nature.
 - Flask, SQLAlchemy is chosed for fast development.
 - Pytest for extra security for further development and maintainability
@@ -33,7 +33,7 @@ docker-compose exec app pytest -s --disable-pytest-warnings -v tests
 
 All above mixed together, i want to a goal to bring up a complete website as fast as possible and not losing
 
-###### Details
+## Details
 
 bootstrap 4 frontend, with form and modal
 
@@ -43,5 +43,5 @@ automatic backend pytest, accpetance test for all CRUD api
 
 
 
-###### what next:
+## what next:
 - separate config files, can use consul
