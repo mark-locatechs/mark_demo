@@ -133,3 +133,5 @@ API_BASE_URL = 'http://flask_project:5000/'
 
 LOGIN_REDIRECT_URL = 'lorem'
 LOGOUT_REDIRECT_URL = 'lorem'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
