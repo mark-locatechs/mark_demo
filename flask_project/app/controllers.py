@@ -126,12 +126,6 @@ class EventController(Resource):
         if error:
             return make_response(jsonify(error=error), 400)
 
-        # # remove route_id for security
-
-
-        # row_count = Event.query.filter_by(id=id).update(data)
-
-
         try:
             db.session.commit()
 

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'dashboard.apps.DashboardConfig',
     'api.apps.ApiConfig',
 ]
@@ -129,3 +130,6 @@ STATIC_URL = '/static/'
 # User Settings
 
 API_BASE_URL = 'http://flask_project:5000/'
+
+LOGIN_REDIRECT_URL = 'lorem'
+LOGOUT_REDIRECT_URL = 'lorem'
