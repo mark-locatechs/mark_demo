@@ -21,9 +21,9 @@ Django, Bootstrap, Vuejs, uWsgi, nginx, supervisord
 
 ## Technologies
 
-- Docker: Containers can be ran anywhere
+- Docker: Containers can go anywhere
 - Django, Bootstrap, Vuejs: Handles frontend interactions
-- Flask, SQLAlchemy: Rest-ful api handles backend traffic
+- Flask, SQLAlchemy: Micro-service rest-ful api handles backend traffic
 - Mysql(Mariadb): One of the most popular database server
 - Marshmallow: Backend data validation
 - Pytest: Acceptance test for api
@@ -31,7 +31,9 @@ Django, Bootstrap, Vuejs, uWsgi, nginx, supervisord
 
 ## Website Details
 
-bootstrap 4 frontend, with form and modal
+![alt text](images/index.png "home page")
+
+Bootstrap 4 frontend, with form and modal
 
 form validation frontend and backend
 
