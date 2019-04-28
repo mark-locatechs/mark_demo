@@ -1,6 +1,6 @@
 version: "3"
 services:
-  #main app
+  # backend
   flask_project:
     build: ./flask_project
     volumes:
@@ -13,10 +13,11 @@ services:
       always
     depends_on:
       - db
+  # frontend
   django_project:
     build: ./django_project
     volumes:
-      - ./django_project:/web
+      - ./django_project:/project
     networks:
       - demo_network
     ports:
@@ -25,7 +26,6 @@ services:
       always
     depends_on:
       - db
-    command: python manage.py runserver 0.0.0.0:8000
 
    # development enviroments
   db:
@@ -37,6 +37,7 @@ services:
       MYSQL_PASSWORD: demo
     volumes:
       - demo_db:/var/lib/mysql/data
+      - ./db:/db
     networks:
       - demo_network
   adminer:

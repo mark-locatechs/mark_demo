@@ -10,16 +10,6 @@ from app.models import database_init
 with app.app_context():
     database_init()
 
-# test static pages
-def test_index():
-    resp = requests.get('http://localhost:5000/')
-    assert resp.status_code == 200
-    assert resp.text.find('demo.js') > -1
-
-def test_lorem():
-    resp = requests.get('http://localhost:5000/lorem')
-    assert resp.status_code == 200
-    assert resp.text.find('Lorem ipsum') > -1
 
 # test route API
 def test_route_create():

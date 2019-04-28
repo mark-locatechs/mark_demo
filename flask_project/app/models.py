@@ -2,6 +2,7 @@ from app.shared import db
 
 
 class Route(db.Model):
+    __tablename__ = 'flask_route'
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
     id = db.Column(db.Integer, primary_key=True)
 
@@ -13,13 +14,14 @@ class Route(db.Model):
 
 
 class Event(db.Model):
+    __tablename__ = 'flask_event'
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
     id = db.Column(db.Integer, primary_key=True)
     time = db.Column(db.Date, unique=False, nullable=False)
 
-    route_id = db.Column(db.Integer, db.ForeignKey('route.id', ondelete='CASCADE'), nullable=False)
-    start_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
-    end_id = db.Column(db.Integer, db.ForeignKey('city.id'), nullable=False)
+    route_id = db.Column(db.Integer, db.ForeignKey('flask_route.id', ondelete='CASCADE'), nullable=False)
+    start_id = db.Column(db.Integer, db.ForeignKey('flask_city.id'), nullable=False)
+    end_id = db.Column(db.Integer, db.ForeignKey('flask_city.id'), nullable=False)
 
 
     def __repr__(self):
@@ -27,6 +29,7 @@ class Event(db.Model):
 
 
 class City(db.Model):
+    __tablename__ = 'flask_city'
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80, collation='utf8_unicode_ci'), unique=False, nullable=False)

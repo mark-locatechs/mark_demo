@@ -51,22 +51,6 @@ api.add_resource(CitiesController, '/city')
 app.register_blueprint(api_bp)
 
 
-
-# static index page
-@app.route('/')
-def index():
-    #result = [(user.id, user.name) for user in User.query.all()]
-
-    return render_template('index.html')
-
-# static index page
-@app.route('/lorem')
-def lorem():
-    #result = [(user.id, user.name) for user in User.query.all()]
-
-    return render_template('lorem.html')
-
-
 # close db connection
 @app.teardown_appcontext
 def shutdown_session(exception=None):
