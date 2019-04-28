@@ -19,19 +19,19 @@ It is designed to balance fast development, easy to maintain, portability and sc
 
 ### build containers
 
-docker-compose build
-
-### init database
-
-docker-compose  exec  db  bash -c 'mysql -udemo -pdemo demo < /db/init.sql'
+`docker-compose build`
 
 ### start all service
 
-docker-compose up -d
+`docker-compose up` , add `-d` for detached mode, open a new ternimal for following steps if deteached mode not used.
+
+### init database, website is fully functional after this point
+
+`docker-compose exec db bash -c 'mysql -udemo -pdemo demo < /db/init.sql'`
 
 ### run test, make sure all service started first
 
-docker-compose exec flask_project pytest -s --disable-pytest-warnings -v tests
+`docker-compose exec flask_project pytest -s --disable-pytest-warnings -v tests`
 
 ## Technologies
 
