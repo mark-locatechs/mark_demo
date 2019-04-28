@@ -75,7 +75,7 @@
                     <div class="form-group">
 
                         <label for="start-id-input" class="col-form-label">Start</label>
-                        <select class="form-control" v-model="start_id_selected" id="start-id-input" v-on:change="()=>{start_id_error=null}">
+                        <select required class="form-control" v-model="start_id_selected" id="start-id-input" v-on:change="()=>{start_id_error=null}">
                             <option v-bind:value="city.id" id="start_id" v-for="city in cities">[[ city.name ]]</option>
                         </select>
                         <div class="invalid-feedback d-block" v-if="start_id_error">[[start_id_error]]</div>
@@ -83,14 +83,14 @@
                     </div>
                     <div class="form-group">
                         <label for="end-id-input" class="col-form-label">End</label>
-                        <select class="form-control" v-model="end_id_selected" id="end-id-input" v-on:change="()=>{end_id_error=null}">
+                        <select required class="form-control" v-model="end_id_selected" id="end-id-input" v-on:change="()=>{end_id_error=null}">
                             <option v-bind:value="city.id" id="end_id" v-for="city in cities">[[ city.name ]]</option>
                         </select>
                         <div class="invalid-feedback d-block" v-if="end_id_error">[[end_id_error]]</div>
                     </div>
                     <div class="form-group">
-                        <label for="time-input" class="col-form-label">Time</label>
-                        <vuejs-datepicker
+                        <label for="time-input" class="col-form-label">Date</label>
+                        <vuejs-datepicker required
                             placeholder="Select Date" v-model="time_selected" id="time-input"
                             :format="customFormatter"  v-on:closed="()=>{time_error=null}">
                         </vuejs-datepicker>

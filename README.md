@@ -9,7 +9,7 @@ This Demo shows a micro-service structured website. Everything is dockerized and
 - Django frontend node handles static pages and user authentication.
 - Flask backend node as micro-service handles data process.
 
-It can be used as a base image for future developments. Frontend node or backend node can be use alone for small sized projects.
+I try to keep system requirements, dependencies as minimum as possible. It can be used as base image for future developments. Frontend node or backend node can be use alone for small sized projects.
 
 ### Backend
 
@@ -23,21 +23,25 @@ Django, Bootstrap, Vuejs, uWsgi, nginx, supervisord
 
 - Docker: Containers can go anywhere
 - Django, Bootstrap, Vuejs: Handles frontend interactions
-- Flask, SQLAlchemy: Micro-service rest-ful api handles backend traffic
+- Flask, SQLAlchemy: Micro-service rest-ful CRUD api handles backend traffic
 - Mysql(Mariadb): One of the most popular database server
 - Marshmallow: Backend data validation
 - Pytest: Acceptance test for api
 - uWSGI, nginx, suervisord: Ensure fast multi-threaded data handling
 
-## Website Details
+## Website Detail
 
 ![alt text](/images/index.PNG?raw=true "home page")
 
-Bootstrap 4 frontend, with form and modal
+Website is simple, user can click on `New Route` button to create routes. Each route have a remove button to delete itself.
+User can add event to each route, a event must have a start point, a end point and a date. Click the `Create` button will try to create the event. Error with displayed to correspondent field when condition not allowed.
 
-form validation frontend and backend
+And there is a second page 'lorem' to show user authentication mechanism. Only authenticated user can visit this page. Username and Password are both `demo` here.
 
-automatic backend pytest, acceptance test for all CRUD api
+- Website uses Bootstrap 4 with modal forms
+- Vuejs plugin vuejs-datepicker for date input field
+- Axios for asynchronous api calls
+- moment for formatting time
 
 ## Run Guide
 
@@ -57,7 +61,14 @@ automatic backend pytest, acceptance test for all CRUD api
 
 `docker-compose exec flask_project pytest -s --disable-pytest-warnings -v tests`
 
-## What next
+### Tips
 
-- in-code comments
-- separate config files, can use consul
+- Remember to run database init code, while all services is running
+- Refresh browser when buttons are inactive, js can be cached, no js versioning right now
+- Pytest will reset all data
+
+### useful links
+
+http://localhost:8000/ : website homepage
+http://localhost:5000/city : micro-service api
+http://localhost:8080/ : Adminer database GUI, `demo` as username, password and database name
