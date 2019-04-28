@@ -69,6 +69,6 @@ And there is a second page 'lorem' to show user authentication mechanism. Only a
 
 ### useful links
 
-http://localhost:8000/ : website homepage
-http://localhost:5000/city : micro-service api
-http://localhost:8080/ : Adminer database GUI, `demo` as username, password and database name
+- http://localhost:8000/ : website homepage
+- http://localhost:5000/city : micro-service api
+- http://localhost:8080/ : Adminer database GUI, `demo` as username, password and database name
