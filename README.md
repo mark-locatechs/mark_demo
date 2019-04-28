@@ -31,7 +31,7 @@ Django, Bootstrap, Vuejs, uWsgi, nginx, supervisord
 
 ## Website Details
 
-![alt text](images/index.png "home page")
+![alt text](/images/index.PNG?raw=true "home page")
 
 Bootstrap 4 frontend, with form and modal
 
