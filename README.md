@@ -61,11 +61,11 @@ And there is a second page 'lorem' to show user authentication mechanism. Only a
 
 `docker-compose exec flask_project pytest -s --disable-pytest-warnings -v tests`
 
-### Tips
+### Worth to mention
 
-- Remember to run database init code, while all services is running
+- Remember to run database init code, after all services is stared up and running
 - Refresh browser when buttons are inactive, js can be cached, no js versioning right now
-- Pytest will reset all data
+- Pytest will reset all stored data
 
 ### useful links
 
