@@ -8,16 +8,17 @@ This Demo shows a micro-service structured website. Everything is dockerized and
 
 - Django frontend node handles static pages and user authentication.
 - Flask backend node as micro-service handles data process.
+- Nginx reverse proxy, has separated frontend backend network.
 
 I try to keep system requirements, dependencies as minimum as possible. It can be used as base image for future developments. Frontend node or backend node can be use alone for small sized projects.
 
 ### Backend
 
-Flask, Pytest, uWsgi, nginx, supervisord
+Flask, Pytest, uWsgi
 
 ### Frontend
 
-Django, Bootstrap, Vuejs, uWsgi, nginx, supervisord
+Django, Bootstrap, Vuejs, uWsgi
 
 ## Technologies
 
@@ -27,7 +28,8 @@ Django, Bootstrap, Vuejs, uWsgi, nginx, supervisord
 - Mysql(Mariadb): One of the most popular database server
 - Marshmallow: Backend data validation
 - Pytest: Acceptance test for api
-- uWSGI, nginx, suervisord: Ensure fast multi-threaded data handling
+- uWSGI: Ensure fast multi-threaded data handling
+- nginx: Act as a reserve proxy, handle ssl, simple load balancing etc.
 
 ## Website Detail
 
@@ -69,6 +71,7 @@ And there is a second page 'lorem' to show user authentication mechanism. Only a
 
 ### useful links
 
-- http://localhost:8000/ : website homepage
+- http://localhost:8000/ : website public address
+- http://localhost:8001/ : website homepage after proxy
 - http://localhost:5000/city : micro-service api
 - http://localhost:8080/ : Adminer database GUI, `demo` as username, password and database name
