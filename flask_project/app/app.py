@@ -25,9 +25,11 @@ CORS(app)
 
 
 # init database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://demo:demo@db/demo?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://demo:demo@db:3306/demo?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'pool_pre_ping': True}
+app.config['SQLALCHEMY_POOL_SIZE'] = 2
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 500
 
 
 db.init_app(app)
@@ -50,12 +52,6 @@ api.add_resource(CitiesController, '/city')
 
 app.register_blueprint(api_bp)
 
-
-# close db connection
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-
-    db.session.close()
 
 #Enable when needed...
 # def sql_debug(response):
