@@ -7,7 +7,6 @@ COPY requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt
 
 RUN rm -r /root/.cache
-COPY uwsgi.ini /etc/uwsgi/
 
 WORKDIR /project/
 

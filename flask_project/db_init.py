@@ -11,7 +11,7 @@ with app.app_context():
 
     print('wait for db')
 
-    time.sleep(2)
+    time.sleep(1)
 
     database_init()
 
