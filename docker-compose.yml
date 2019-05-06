@@ -1,66 +1,79 @@
 version: "3"
 services:
-  # backend
-  flask_project:
-    build: ./flask_project
+  laravel_project:
+    build: ./laravel_project
     volumes:
-      - ./flask_project:/project
-    networks:
-      - backend_network
-    ports:
-      - "5000:5000"
-    restart:
-      always
-    depends_on:
-      - db
-  # frontend
-  django_project:
-    build: ./django_project
-    volumes:
-      - ./django_project:/project
+      - ./laravel_project/web:/home/www/web
     networks:
       - backend_network
     ports:
       - "8001:8001"
     restart:
       always
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
+  # # backend
+  # flask_project:
+  #   build: ./flask_project
+  #   volumes:
+  #     - ./flask_project:/project
+  #   networks:
+  #     - backend_network
+  #   ports:
+  #     - "5000:5000"
+  #   restart:
+  #     always
+  #   depends_on:
+  #     - db
+  # # frontend
+  # django_project:
+  #   build: ./django_project
+  #   volumes:
+  #     - ./django_project:/project
+  #   networks:
+  #     - backend_network
+  #   ports:
+  #     - "8001:8001"
+  #   restart:
+  #     always
+  #   depends_on:
+  #     - db
 
-  nginx:
-    image: nginx:1.15.12
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/sites:/etc/nginx/conf.d/
-    ports:
-      - "8000:8000"
-    networks:
-      - frontend_network
-      - backend_network
-    command: ["nginx", "-g", "daemon off;"]
 
-   # development enviroments
-  db:
-    image: mariadb:10.3.14
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: demo
-      MYSQL_USER: demo
-      MYSQL_PASSWORD: demo
-    volumes:
-      - demo_db:/var/lib/mysql/data
-      - ./db:/db
-    networks:
-      - backend_network
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-    networks:
-      - backend_network
-    depends_on:
-      - db
+  # nginx:
+  #   image: nginx:1.15.12
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./nginx/sites:/etc/nginx/conf.d/
+  #   ports:
+  #     - "8000:8000"
+  #   networks:
+  #     - frontend_network
+  #     - backend_network
+  #   command: ["nginx", "-g", "daemon off;"]
+
+  #  # development enviroments
+  # db:
+  #   image: mariadb:10.3.14
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: demo
+  #     MYSQL_USER: demo
+  #     MYSQL_PASSWORD: demo
+  #   volumes:
+  #     - demo_db:/var/lib/mysql/data
+  #     - ./db:/db
+  #   networks:
+  #     - backend_network
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+  #   networks:
+  #     - backend_network
+  #   depends_on:
+  #     - db
 
 volumes:
   demo_db:
