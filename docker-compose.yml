@@ -7,38 +7,38 @@ services:
     networks:
       - backend_network
     ports:
+      - "8010:8010"
+    command: php artisan serve --port 8010 --host 0.0.0.0
+    restart:
+      always
+    depends_on:
+      - db
+  # backend
+  flask_project:
+    build: ./flask_project
+    volumes:
+      - ./flask_project:/project
+    networks:
+      - backend_network
+    ports:
+      - "5000:5000"
+    restart:
+      always
+    depends_on:
+      - db
+  # frontend
+  django_project:
+    build: ./django_project
+    volumes:
+      - ./django_project:/project
+    networks:
+      - backend_network
+    ports:
       - "8001:8001"
     restart:
       always
-    # depends_on:
-    #   - db
-  # # backend
-  # flask_project:
-  #   build: ./flask_project
-  #   volumes:
-  #     - ./flask_project:/project
-  #   networks:
-  #     - backend_network
-  #   ports:
-  #     - "5000:5000"
-  #   restart:
-  #     always
-  #   depends_on:
-  #     - db
-  # # frontend
-  # django_project:
-  #   build: ./django_project
-  #   volumes:
-  #     - ./django_project:/project
-  #   networks:
-  #     - backend_network
-  #   ports:
-  #     - "8001:8001"
-  #   restart:
-  #     always
-  #   depends_on:
-  #     - db
-
+    depends_on:
+      - db
 
   # nginx:
   #   image: nginx:1.15.12
@@ -52,28 +52,28 @@ services:
   #     - backend_network
   #   command: ["nginx", "-g", "daemon off;"]
 
-  #  # development enviroments
-  # db:
-  #   image: mariadb:10.3.14
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: demo
-  #     MYSQL_USER: demo
-  #     MYSQL_PASSWORD: demo
-  #   volumes:
-  #     - demo_db:/var/lib/mysql/data
-  #     - ./db:/db
-  #   networks:
-  #     - backend_network
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
-  #   networks:
-  #     - backend_network
-  #   depends_on:
-  #     - db
+   # development enviroments
+  db:
+    image: mariadb:10.3.14
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: demo
+      MYSQL_USER: demo
+      MYSQL_PASSWORD: demo
+    volumes:
+      - demo_db:/var/lib/mysql/data
+      - ./db:/db
+    networks:
+      - backend_network
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - backend_network
+    depends_on:
+      - db
 
 volumes:
   demo_db:

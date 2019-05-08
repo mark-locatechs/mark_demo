@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('index');
+
+Route::get('/lorem', function () {
+    return view('index');
+})->name('lorem');
+
+Route::resource('api/city', 'Api\CityController');
+Route::resource('api/route', 'Api\RouteController');
+Route::resource('api/event', 'Api\EventController');

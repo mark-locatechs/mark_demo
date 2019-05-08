@@ -122,14 +122,13 @@ class EventController(Resource):
 
         (new_event, error) = event_update_schema.load(data, session=db.session)
 
-
         if error:
             return make_response(jsonify(error=error), 400)
 
         try:
             db.session.commit()
 
-            return jsonify(id=id)
+            return jsonify(id=new_event.id)
 
         except Exception as e:
 
@@ -161,7 +160,7 @@ class EventsController(Resource):
             return jsonify(id=new_event.id)
         except Exception as e:
             db.session.rollback()
-            abort(400)
+            return make_response(jsonify(error=str(e)), 400)
 
 
 
