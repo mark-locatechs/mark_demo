@@ -35,23 +35,18 @@ RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
 # Copy existing application directory permissions
-# COPY --chown=www:www . /home/
-
-
-
-# COPY --chown=www:www ./web /home/www/web
+#COPY --chown=www:www ./web /home/www/web
 WORKDIR /home/www/web
 
 USER www
 
-# RUN composer install
-# RUN npm install
+#RUN composer install
+#RUN npm install
 
 
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["php-fpm", "-F"]
 
-# RUN composer global require laravel/installer
 
 # RUN export PATH="$PATH:$HOME/.composer/vendor/bin"

@@ -228,6 +228,6 @@ return [
 
     ],
 
-    'api_base_url' => env('API_BASE_URL'),
+    'api_base_url' => env('API_BASE_URL', 'http://flask_project:5000/'),
 
 ];

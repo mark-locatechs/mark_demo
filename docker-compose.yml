@@ -52,7 +52,7 @@ services:
       - backend_network
     command: ["nginx", "-g", "daemon off;"]
     depends_on:
-      - django_project
+      # - django_project
       - laravel_project
 
    # development enviroments
