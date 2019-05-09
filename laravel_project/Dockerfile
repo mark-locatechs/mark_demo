@@ -39,18 +39,17 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 
 
-COPY --chown=www:www ./web /home/www/web
+# COPY --chown=www:www ./web /home/www/web
 WORKDIR /home/www/web
 
 USER www
 
-RUN composer install
-RUN npm install
-
+# RUN composer install
+# RUN npm install
 
 
 # Expose port 9000 and start php-fpm server
-EXPOSE 8010
+EXPOSE 9000
 CMD ["php-fpm"]
 
 # RUN composer global require laravel/installer

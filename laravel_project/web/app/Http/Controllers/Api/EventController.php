@@ -14,7 +14,7 @@ class EventController extends ApiController
      */
     public function index()
     {
-        $resp = $this->client->get(env('API_BASE_URL').'event');
+        $resp = $this->client->get(config('app.api_base_url').'event');
 
         return json_decode($resp->getBody(), true);
     }
@@ -28,7 +28,7 @@ class EventController extends ApiController
      */
     public function store(Request $request)
     {
-        $resp = $this->client->post(env('API_BASE_URL').'event', ['json' => $request->json()->all()]);
+        $resp = $this->client->post(config('app.api_base_url').'event', ['json' => $request->json()->all()]);
 
         return json_decode($resp->getBody(), true);
     }
@@ -43,7 +43,7 @@ class EventController extends ApiController
      */
     public function update(Request $request, $id)
     {
-        $resp = $this->client->put(env('API_BASE_URL')."event/{$id}", ['json' => $request->json()->all()]);
+        $resp = $this->client->put(config('app.api_base_url')."event/{$id}", ['json' => $request->json()->all()]);
 
         return json_decode($resp->getBody(), true);
     }
@@ -56,7 +56,7 @@ class EventController extends ApiController
      */
     public function destroy($id)
     {
-        $resp = $this->client->delete(env('API_BASE_URL')."event/{$id}");
+        $resp = $this->client->delete(config('app.api_base_url')."event/{$id}");
 
         return json_decode($resp->getBody(), true);
     }

@@ -7,6 +7,7 @@ Demo Project from Mark Long (mark@locatechs.com)
 This Demo shows a micro-service structured website. Everything is dockerized and can go to any cloud provider with minimum setup.
 
 - Django frontend node handles static pages and user authentication.
+- Laravel frontend node doing exactly same thing as Django node.
 - Flask backend node as micro-service handles data process.
 - Nginx reverse proxy, has separated frontend backend network.
 
@@ -19,6 +20,7 @@ Flask, Pytest, uWsgi
 ### Frontend
 
 Django, Bootstrap, Vuejs, uWsgi
+Laravel, Bootstrap, Vuejs, php-fpm
 
 ## Technologies
 
@@ -71,7 +73,9 @@ And there is a second page 'lorem' to show user authentication mechanism. Only a
 
 ### useful links
 
-- http://localhost:8000/ : website public address
-- http://localhost:8001/ : website homepage after proxy
+- http://localhost:8000/ : django public address
+- http://localhost:8001/ : laravel public address
+
+- http://localhost:8010/ : django homepage after proxy
 - http://localhost:5000/city : micro-service api
 - http://localhost:8080/ : Adminer database GUI, `demo` as username, password and database name

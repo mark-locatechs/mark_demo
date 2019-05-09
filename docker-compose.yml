@@ -7,8 +7,7 @@ services:
     networks:
       - backend_network
     ports:
-      - "8010:8010"
-    command: php artisan serve --port 8010 --host 0.0.0.0
+      - "9000:9000"
     restart:
       always
     depends_on:
@@ -34,23 +33,27 @@ services:
     networks:
       - backend_network
     ports:
-      - "8001:8001"
+      - "8010:8010"
     restart:
       always
     depends_on:
       - db
-
-  # nginx:
-  #   image: nginx:1.15.12
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-  #     - ./nginx/sites:/etc/nginx/conf.d/
-  #   ports:
-  #     - "8000:8000"
-  #   networks:
-  #     - frontend_network
-  #     - backend_network
-  #   command: ["nginx", "-g", "daemon off;"]
+  nginx:
+    image: nginx:1.15.12
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites:/etc/nginx/conf.d/
+      - ./laravel_project/web/public/:/home/www/web/public  # for static files
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    networks:
+      - frontend_network
+      - backend_network
+    command: ["nginx", "-g", "daemon off;"]
+    depends_on:
+      - django_project
+      - laravel_project
 
    # development enviroments
   db:

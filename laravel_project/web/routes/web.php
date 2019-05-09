@@ -27,4 +27,3 @@ Route::resource('api/event', 'Api\EventController');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

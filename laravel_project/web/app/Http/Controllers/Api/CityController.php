@@ -14,7 +14,7 @@ class CityController extends ApiController
      */
     public function index()
     {
-        $resp = $this->client->get(env('API_BASE_URL').'city');
+        $resp = $this->client->get(config('app.api_base_url').'city');
 
         return json_decode($resp->getBody(), true);
     }
