@@ -16,9 +16,15 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/lorem', function () {
-    return view('index');
-})->name('lorem');
+    return view('lorem');
+})->name('lorem')->middleware('auth');
+
+Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 Route::resource('api/city', 'Api\CityController');
 Route::resource('api/route', 'Api\RouteController');
 Route::resource('api/event', 'Api\EventController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
