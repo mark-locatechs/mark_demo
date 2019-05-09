@@ -4,7 +4,7 @@
 @section('content')
 <div id="routeplaner">
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-4">Route Planer</h1>
+        <h1 class="display-4">Route Planer Laravel</h1>
         <p class="lead">Each route contains multiple events</p>
         <button type="button" class="btn btn-xs btn-outline-success" v-on:click="newRoute">New Route</button>
     </div>
