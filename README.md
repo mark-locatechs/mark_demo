@@ -36,7 +36,11 @@ Laravel, Bootstrap, Vuejs, php-fpm
 
 ## Website Detail
 
+### Home Page
+
 ![alt text](/images/index.png?raw=true "home page")
+
+### Login Page
 
 ![alt text](/images/login.png?raw=true "home page")
 
