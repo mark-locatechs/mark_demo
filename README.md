@@ -6,8 +6,8 @@ Demo Project from Mark Long (mark@locatechs.com)
 
 This Demo shows a micro-service structured website. Everything is dockerized and can go to any cloud provider with minimum setup.
 
-- Django frontend node handles static pages and user authentication.
-- Laravel frontend node doing exactly same thing as Django node.
+- Django frontend node handles static pages, user authentication and api to microservie.
+- Laravel frontend node doing the same thing as Django node just used different framework. It shares the micro-service thus share the data between django node.
 - Flask backend node as micro-service handles data process.
 - Nginx reverse proxy, has separated frontend backend network.
 
