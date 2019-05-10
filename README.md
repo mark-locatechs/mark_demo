@@ -20,6 +20,7 @@ Flask, Pytest, uWsgi
 ### Frontend
 
 Django, Bootstrap, Vuejs, uWsgi
+
 Laravel, Bootstrap, Vuejs, php-fpm
 
 ## Technologies
