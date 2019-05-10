@@ -64,11 +64,11 @@ And there is a second page 'lorem' to show user authentication mechanism. Only a
 
 `docker-compose up` , add `-d` for detached mode. Open a new Terminal for following steps if detached mode not used.
 
-### init database,
+### init database, django frontend is functional after this step
 
 `docker-compose exec db bash -c 'mysql -udemo -pdemo demo < /db/init.sql'`
 
-### init laravel vendor and nodejs modules (vendor should installed into image for production), website is functional after this step
+### init laravel vendor and nodejs modules (vendor should installed into image for production), laravel is functional after this step
 
 `docker-compose exec laravel_project bash -c 'npm install && composer install'`
 
