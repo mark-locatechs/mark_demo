@@ -36,7 +36,9 @@ Laravel, Bootstrap, Vuejs, php-fpm
 
 ## Website Detail
 
-![alt text](/images/index.PNG?raw=true "home page")
+![alt text](/images/index.png?raw=true "home page")
+
+![alt text](/images/login.png?raw=true "home page")
 
 Website is simple, user can click on `New Route` button to create routes. Each route have a remove button to delete itself.
 User can add event to each route, a event must have a start point, a end point and a date. Click the `Create` button will try to create the event. Error with displayed to correspondent field when condition not allowed.
