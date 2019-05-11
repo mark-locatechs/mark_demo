@@ -2,7 +2,7 @@
   "id": "60be71c3-1e87-4188-93e7-3798ab6f8ceb",
   "version": "2.0",
   "name": "mark_demo",
-  "url": "http://localhost:8000/",
+  "url": "http://nginx:8000/",
   "tests": [{
     "id": "f66c25bf-6145-4d9f-abca-b854e8176d6b",
     "name": "login test django",
@@ -242,13 +242,6 @@
       "targets": [],
       "value": ""
     }, {
-      "id": "6b50284b-46de-45f1-b61a-0443539272e5",
-      "comment": "",
-      "command": "setWindowSize",
-      "target": "1051x691",
-      "targets": [],
-      "value": ""
-    }, {
       "id": "f0d25805-7fb1-452d-8809-4a17ec3060ca",
       "comment": "",
       "command": "assertText",
@@ -313,6 +306,19 @@
       ],
       "value": ""
     }, {
+      "id": "e9b14acb-7208-4a7a-978b-78d4e54d1c6d",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "id=start-id-input",
+      "targets": [
+        ["id=start-id-input", "id"],
+        ["css=#start-id-input", "css:finder"],
+        ["xpath=//select[@id='start-id-input']", "xpath:attributes"],
+        ["xpath=//div[@id='eventModal']/div/div/div[2]/form/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "1000"
+    }, {
       "id": "20e0474f-22f6-4d9a-9ade-b5544e33eb13",
       "comment": "",
       "command": "click",
@@ -326,23 +332,15 @@
       ],
       "value": ""
     }, {
-      "id": "7fb847c8-3e41-49b8-9b14-a09792dcb3c4",
-      "comment": "",
-      "command": "select",
-      "target": "id=start-id-input",
-      "targets": [],
-      "value": "label=Amsterdam"
-    }, {
-      "id": "ecb220ea-e3af-417c-8a39-a751f30f6642",
+      "id": "b04e0d13-50a2-445f-a9e3-0981dfe3f9f6",
       "comment": "",
       "command": "click",
-      "target": "id=start_id",
+      "target": "xpath=(//option[@id='start_id'])[1]",
       "targets": [
-        ["id=start_id", "id"],
-        ["xpath=//option[@id='start_id']", "xpath:attributes"],
-        ["xpath=//select[@id='start-id-input']/option", "xpath:idRelative"],
-        ["xpath=//option", "xpath:position"],
-        ["xpath=//option[contains(.,'Amsterdam')]", "xpath:innerText"]
+        ["xpath=(//option[@id='start_id'])[2]", "xpath:attributes"],
+        ["xpath=//select[@id='start-id-input']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Berlin')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -359,21 +357,15 @@
       ],
       "value": ""
     }, {
-      "id": "1b553382-8cd9-4e48-82bd-d252fa4f60b9",
-      "comment": "",
-      "command": "select",
-      "target": "id=end-id-input",
-      "targets": [],
-      "value": "label=Berlin"
-    }, {
-      "id": "1fe3d036-c420-45fd-b81a-748f2e4f2efd",
+      "id": "baee4b90-961d-47cd-b99b-ae8a633223b5",
       "comment": "",
       "command": "click",
       "target": "xpath=(//option[@id='end_id'])[2]",
       "targets": [
-        ["xpath=(//option[@id='end_id'])[2]", "xpath:attributes"],
-        ["xpath=//select[@id='end-id-input']/option[2]", "xpath:idRelative"],
-        ["xpath=//div[2]/select/option[2]", "xpath:position"]
+        ["xpath=(//option[@id='start_id'])[2]", "xpath:attributes"],
+        ["xpath=//select[@id='start-id-input']/option[2]", "xpath:idRelative"],
+        ["xpath=//option[2]", "xpath:position"],
+        ["xpath=//option[contains(.,'Berlin')]", "xpath:innerText"]
       ],
       "value": ""
     }, {
@@ -425,6 +417,13 @@
       ],
       "value": "Amsterdam to Berlin"
     }, {
+      "id": "b6caa0ae-cad7-4196-9825-fef26932cf5b",
+      "comment": "",
+      "command": "waitForElementNotPresent",
+      "target": "css=.modal-backdrop",
+      "targets": [],
+      "value": "1000"
+    }, {
       "id": "20d64233-66e1-4a68-a5e1-6496dca43164",
       "comment": "",
       "command": "click",
@@ -437,6 +436,19 @@
         ["xpath=//button[contains(.,'Edit')]", "xpath:innerText"]
       ],
       "value": ""
+    }, {
+      "id": "2c8bbc12-7edf-42de-a832-f5bca447e5e8",
+      "comment": "",
+      "command": "waitForElementVisible",
+      "target": "id=start-id-input",
+      "targets": [
+        ["id=start-id-input", "id"],
+        ["css=#start-id-input", "css:finder"],
+        ["xpath=//select[@id='start-id-input']", "xpath:attributes"],
+        ["xpath=//div[@id='eventModal']/div/div/div[2]/form/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": "1000"
     }, {
       "id": "a80777e8-ab5c-4a31-a7ab-1db5219f4f3a",
       "comment": "",
@@ -451,14 +463,7 @@
       ],
       "value": ""
     }, {
-      "id": "355c9c81-4e06-4000-80a0-70194a369478",
-      "comment": "",
-      "command": "select",
-      "target": "id=start-id-input",
-      "targets": [],
-      "value": "label=Berlin"
-    }, {
-      "id": "baee4b90-961d-47cd-b99b-ae8a633223b5",
+      "id": "6f7db1b4-1316-44c6-903d-67f99eb9d370",
       "comment": "",
       "command": "click",
       "target": "xpath=(//option[@id='start_id'])[2]",
@@ -482,13 +487,6 @@
         ["xpath=//div[2]/select", "xpath:position"]
       ],
       "value": ""
-    }, {
-      "id": "6bb553fa-7436-4051-ae07-eceb8d4ce909",
-      "comment": "",
-      "command": "select",
-      "target": "id=end-id-input",
-      "targets": [],
-      "value": "label=Paris"
     }, {
       "id": "15d01eef-07aa-4a55-8a5a-a124b927fc9e",
       "comment": "",
@@ -539,7 +537,7 @@
       ],
       "value": ""
     }, {
-      "id": "249fc5e8-8cda-487f-8d16-0292c2e48a49",
+      "id": "92fcb583-8df2-460c-ae61-1d754449c064",
       "comment": "",
       "command": "assertText",
       "target": "css=.col:nth-child(1)",
@@ -550,30 +548,14 @@
       ],
       "value": "Berlin to Paris"
     }, {
-      "id": "12a94bce-b182-4462-a77e-545ba15cbf40",
+      "id": "c3f1d539-61db-4c25-80c4-1593e1ff781a",
       "comment": "",
-      "command": "click",
-      "target": "css=.btn:nth-child(4)",
-      "targets": [
-        ["css=.btn:nth-child(4)", "css:finder"],
-        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
-        ["xpath=//div[@id='routeplaner']/div[2]/div/div/div[2]/ul/li/button[2]", "xpath:idRelative"],
-        ["xpath=//button[2]", "xpath:position"]
-      ],
-      "value": ""
+      "command": "waitForElementNotPresent",
+      "target": "css=.modal-backdrop",
+      "targets": [],
+      "value": "1000"
     }, {
-      "id": "fbcba02c-c0bb-4914-905f-3c7f78e85a05",
-      "comment": "",
-      "command": "assertNotText",
-      "target": "css=.card-body",
-      "targets": [
-        ["css=.card-body", "css:finder"],
-        ["xpath=//div[@id='routeplaner']/div[2]/div/div/div[2]", "xpath:idRelative"],
-        ["xpath=//div/div/div[2]", "xpath:position"]
-      ],
-      "value": "Berlin to Paris"
-    }, {
-      "id": "bf90cd76-1035-4e36-88ad-6facc0a32163",
+      "id": "07f87be4-41d3-4a70-a088-36bb4b0ca458",
       "comment": "",
       "command": "click",
       "target": "css=.btn-outline-danger",
@@ -586,7 +568,7 @@
       ],
       "value": ""
     }, {
-      "id": "3a15f64d-4afe-4f60-a778-bd078815576f",
+      "id": "b6e1d64c-b759-4e36-9115-c0078cfc07fd",
       "comment": "",
       "command": "assertNotText",
       "target": "css=html",
@@ -605,6 +587,6 @@
     "timeout": 300,
     "tests": ["f66c25bf-6145-4d9f-abca-b854e8176d6b", "2570615b-7430-40ea-bf74-6246d81e3b68"]
   }],
-  "urls": ["http://localhost:8000/"],
+  "urls": ["http://localhost:8000/", "http://nginx:8000/"],
   "plugins": []
 }

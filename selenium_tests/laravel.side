@@ -2,7 +2,7 @@
   "id": "60be71c3-1e87-4188-93e7-3798ab6f8ceb",
   "version": "2.0",
   "name": "mark_demo",
-  "url": "http://localhost:8001/",
+  "url": "http://nginx:8001/",
   "tests": [{
     "id": "49d23d75-9fac-4744-ab7b-bd9ff3064fc8",
     "name": "route test laravel",
@@ -575,17 +575,6 @@
         ["xpath=//a[contains(.,'Log Out')]", "xpath:innerText"]
       ],
       "value": ""
-    }, {
-      "id": "afa88dea-0d14-4cbf-87e6-a029796860cc",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=.display-6",
-      "targets": [
-        ["css=.display-6", "css:finder"],
-        ["xpath=//h1", "xpath:position"],
-        ["xpath=//h1[contains(.,'Please login')]", "xpath:innerText"]
-      ],
-      "value": "Please login"
     }]
   }],
   "suites": [{
@@ -594,7 +583,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": ["fcfb0774-7f66-4247-9819-f4d5c0db7f6d", "49d23d75-9fac-4744-ab7b-bd9ff3064fc8"]
+    "tests": ["fcfb0774-7f66-4247-9819-f4d5c0db7f6d"]
   }],
   "urls": ["http://localhost:8000/", "http://localhost:8001/"],
   "plugins": []

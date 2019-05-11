@@ -25,7 +25,7 @@ SECRET_KEY = 'h6wez&fd2(mn-a(!!85cl%p00f=+5jv0y^2b$873ohuuqp56wo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'nginx']
 
 
 # Application definition

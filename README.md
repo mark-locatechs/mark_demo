@@ -33,6 +33,7 @@ Laravel, Bootstrap, Vuejs, php-fpm
 - Pytest: Acceptance test for api
 - uWSGI: Ensure fast multi-threaded data handling
 - nginx: Act as a reserve proxy, handle ssl, simple load balancing etc.
+- Selenium: Selenium tests with headless chrome browser, make sure frontend functions are tested automatically
 
 ## Website Detail
 
@@ -72,9 +73,23 @@ And there is a second page 'lorem' to show user authentication mechanism. Only a
 
 `docker-compose exec laravel_project bash -c 'npm install && composer install'`
 
-### run test, make sure all service started first
+## Tests
+
+Make sure all service started first
+
+### micro-service test
 
 `docker-compose exec flask_project pytest -s --disable-pytest-warnings -v tests`
+
+### frontend selenium test
+
+`docker-compose -f docker-compose-selenium.yml up --build`
+
+### Test Results
+
+![alt text](/images/test1.png?raw=true "selenium test")
+
+![alt text](/images/test2.png?raw=true "pytest")
 
 ### Worth to mention
 
