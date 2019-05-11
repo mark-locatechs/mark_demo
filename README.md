@@ -87,14 +87,18 @@ Make sure all service started first
 
 ### Test Results
 
-![alt text](/images/test1.png?raw=true "selenium test")
+Pytest
 
 ![alt text](/images/test2.png?raw=true "pytest")
 
+Selenium test
+
+![alt text](/images/test1.png?raw=true "selenium test")
+
+
 ### Worth to mention
 
-- Remember to run database init code, after all services is stared up and running
-- Refresh browser when buttons are inactive, js can be cached, no js versioning right now
+- Remember to run database init code, after all services is started up and running
 - Pytest will reset all stored data
 
 ### useful links
